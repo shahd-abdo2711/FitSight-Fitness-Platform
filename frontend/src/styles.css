@@ -1,0 +1,142 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Nunito Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ink: var(--ink);
+  --color-ink-foreground: var(--ink-foreground);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-border: var(--ink-border);
+  --color-success: var(--success);
+  --color-overlay: var(--overlay);
+}
+
+:root {
+  --radius: 0rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.24 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.24 0 0);
+  --primary: oklch(0.68 0.2 44);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.96 0 0);
+  --secondary-foreground: oklch(0.24 0 0);
+  --muted: oklch(0.965 0 0);
+  --muted-foreground: oklch(0.5 0 0);
+  --accent: oklch(0.95 0.03 50);
+  --accent-foreground: oklch(0.24 0 0);
+  --destructive: oklch(0.58 0.22 27);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.87 0 0);
+  --input: oklch(0.8 0 0);
+  --ring: oklch(0.68 0.2 44);
+  --ink: oklch(0.27 0 0);
+  --ink-foreground: oklch(0.98 0 0);
+  --ink-muted: oklch(0.78 0 0);
+  --ink-border: oklch(0.98 0 0 / 0.7);
+  --success: oklch(0.66 0.15 150);
+  --overlay: oklch(0.15 0 0 / 0.45);
+  --shadow-card: 0 18px 40px -24px oklch(0.2 0 0 / 0.35);
+}
+
+.dark {
+  --background: oklch(0.17 0 0);
+  --foreground: oklch(0.95 0 0);
+  --card: oklch(0.21 0 0);
+  --card-foreground: oklch(0.95 0 0);
+  --primary: oklch(0.7 0.19 44);
+  --primary-foreground: oklch(0.14 0 0);
+  --secondary: oklch(0.25 0 0);
+  --secondary-foreground: oklch(0.95 0 0);
+  --muted: oklch(0.23 0 0);
+  --muted-foreground: oklch(0.7 0 0);
+  --accent: oklch(0.3 0.05 45);
+  --accent-foreground: oklch(0.95 0 0);
+  --destructive: oklch(0.65 0.2 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.32 0 0);
+  --input: oklch(0.4 0 0);
+  --ring: oklch(0.7 0.19 44);
+  --ink: oklch(0.11 0 0);
+  --ink-foreground: oklch(0.97 0 0);
+  --ink-muted: oklch(0.72 0 0);
+  --ink-border: oklch(0.97 0 0 / 0.6);
+  --success: oklch(0.72 0.15 150);
+  --overlay: oklch(0.08 0 0 / 0.6);
+  --shadow-card: 0 18px 40px -24px oklch(0 0 0 / 0.8);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { color-scheme: light; }
+  html.dark { color-scheme: dark; }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+}
+
+@utility section-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  line-height: 1.2;
+  text-align: center;
+}
+
+@utility body-copy {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  font-weight: 300;
+  color: var(--color-muted-foreground);
+}
+
+@utility shadow-card { box-shadow: var(--shadow-card); }
+@utility hero-overlay { background: linear-gradient(to bottom, var(--overlay), var(--overlay)); }
+@utility pulse-dot { animation: pulse-dot 1.4s ease-in-out infinite; }
+@utility fade-up { animation: fade-up 0.6s ease both; }
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
